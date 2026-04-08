@@ -1,0 +1,8 @@
+# Ignore the virtual environment and compiled Python files
+docling-env/
+__pycache__/
+*.pyc
+
+
+# VS Code settings
+.vscode/
