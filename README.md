@@ -101,9 +101,12 @@ Evidence:
 Timing note (from log timestamps):
 - Approx. 3m53s (`23:40:54` to `23:44:47`), including first-time model download.
 
-TODO:
-- Add terminal screenshot
-- Add markdown output screenshot
+Screenshots:
+- Terminal output: `screenshots/03-default-terminal.png`
+- Markdown output (`pytorch-conference.md`): `screenshots/04-default-markdown-output.png`
+
+![Experiment 1 terminal output](screenshots/03-default-terminal.png)
+![Experiment 1 markdown output](screenshots/04-default-markdown-output.png)
 
 ---
 
@@ -129,9 +132,12 @@ Evidence:
 Timing note (from log timestamps):
 - Approx. 58s (`23:58:29` to `23:59:27`).
 
-TODO:
-- Add terminal screenshot
-- Add HTML preview screenshot
+Screenshots:
+- Terminal output: `screenshots/05-html-terminal.png`
+- HTML output preview: `screenshots/06-html-output.png`
+
+![Experiment 2 terminal output](screenshots/05-html-terminal.png)
+![Experiment 2 HTML output](screenshots/06-html-output.png)
 
 ---
 
