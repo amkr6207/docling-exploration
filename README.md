@@ -24,6 +24,8 @@ pip install docling
 
 Installation completed successfully with dependencies including `torch`, `torchvision`, `rapidocr`, and others.
 
+![Docling installation output](screenshots/01-install-docling.png)
+
 ### 3) Verify installed version
 
 ```bash
@@ -40,6 +42,8 @@ Docling Parse version: 5.7.0
 Python: cpython-312 (3.12.3)
 Platform: Linux-6.17.0-20-generic-x86_64-with-glibc2.39
 ```
+
+![Docling version output](screenshots/02-docling-version.png)
 
 ### 4) Check CLI options
 
