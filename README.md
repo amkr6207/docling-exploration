@@ -160,9 +160,12 @@ Generated output:
 Evidence:
 - `logs/05-no-ocr.txt`
 
-TODO:
-- Add terminal screenshot
-- Compare text quality side-by-side with default markdown
+Screenshots:
+- Terminal output: `screenshots/07-no-ocr-terminal.png`
+- Markdown output: `screenshots/08-no-ocr-output.png`
+
+![Experiment 3 terminal output](screenshots/07-no-ocr-terminal.png)
+![Experiment 3 markdown output](screenshots/08-no-ocr-output.png)
 
 ---
 
@@ -188,9 +191,12 @@ Evidence:
 Timing note (from log timestamps):
 - Approx. 1m05s (`00:05:02` to `00:06:07`).
 
-TODO:
-- Add terminal screenshot
-- Highlight one table region from output for comparison
+Screenshots:
+- Terminal output: `screenshots/09-table-fast-terminal.png`
+- Markdown output: `screenshots/10-table-fast-output.png`
+
+![Experiment 4 terminal output](screenshots/09-table-fast-terminal.png)
+![Experiment 4 markdown output](screenshots/10-table-fast-output.png)
 
 ---
 
@@ -216,9 +222,12 @@ Evidence:
 Timing note (from log timestamps):
 - Approx. 54s (`00:17:57` to `00:18:51`).
 
-TODO:
-- Add terminal screenshot
-- Highlight one table region from output for comparison
+Screenshots:
+- Terminal output: `screenshots/11-table-accurate-terminal.png`
+- Markdown output: `screenshots/12-table-accurate-output.png`
+
+![Experiment 5 terminal output](screenshots/11-table-accurate-terminal.png)
+![Experiment 5 markdown output](screenshots/12-table-accurate-output.png)
 
 ## Comparative Analysis
 
