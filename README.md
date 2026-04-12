@@ -7,6 +7,17 @@ This repository documents my hands-on exploration for:
 
 Goal: use Docling CLI to convert a PDF to multiple formats, try additional options, and compare outcomes for RAG-style preprocessing.
 
+## Introduction
+
+Docling is a document-conversion toolkit commonly used in Retrieval-Augmented Generation (RAG) workflows to transform source files (such as PDFs) into structured formats that are easier to parse, chunk, and index.
+
+In this exploration, I used the Docling CLI on a brochure-style PDF and tested multiple conversion settings. The objective was to understand how output format and processing options (OCR and table extraction mode) affect:
+- output structure and readability
+- extraction quality
+- processing behavior and runtime
+
+This README captures the exact commands, logs, screenshots, generated artifacts, and a comparison of findings from each experiment.
+
 ## Environment Setup
 
 ### 1) Create and activate virtual environment
