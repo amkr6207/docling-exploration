@@ -231,6 +231,14 @@ Screenshots:
 
 ## Comparative Analysis
 
+| Experiment | Option Tested | Output File | Approx. Time | Key Observation | Trade-off / Recommendation |
+|---|---|---|---|---|---|
+| 1 | Default (`--to md`) | `outputs/default/pytorch-conference.md` | 3m53s (first run) | Includes first-time OCR model download; warning `RapidOCR returned empty result!` | Good baseline run; first run may be slower due to model download/cache warm-up |
+| 2 | HTML (`--to html`) | `outputs/html/pytorch-conference.html` | 58s | OCR cache reused; same OCR warning observed | Better for visual layout review; markdown remains easier for text/RAG pipelines |
+| 3 | OCR disabled (`--no-ocr`) | `outputs/no-ocr/pytorch-conference.md` | N/A (runtime not captured in log) | No `RapidOCR returned empty result!` warning in this run | For this PDF, output remained usable without OCR; keep OCR for scanned/image-heavy PDFs |
+| 4 | Table mode fast (`--table-mode fast`) | `outputs/table-fast/pytorch-conference.md` | 1m05s | OCR cache reused; similar structure quality in sampled sections | Use `fast` for quicker iteration/batch testing |
+| 5 | Table mode accurate (`--table-mode accurate`) | `outputs/table-accurate/pytorch-conference.md` | 54s | Similar quality in sampled sections; not slower in this run | Use `accurate` when table fidelity matters most; runtime may vary by file/cache |
+
 ### Default Markdown vs HTML
 - Markdown is simpler and easier for text-based downstream processing.
 - HTML preserves presentational structure better for visual review.
@@ -239,12 +247,13 @@ Screenshots:
 ### OCR enabled (default) vs `--no-ocr`
 - For this PDF, disabling OCR still produced usable output.
 - Repeated warning `RapidOCR returned empty result!` in OCR-enabled runs suggests OCR often found little/no extra text in image regions for this file.
-- For scanned documents, OCR is still expected to be important.
+- For scanned/image-heavy PDFs, OCR is still expected to be important; for this source PDF, OCR did not materially improve extracted text.
 
 ### `--table-mode fast` vs `--table-mode accurate`
 - In my run logs, `accurate` was not slower than `fast` (54s vs 65s).
 - This can happen due to run-to-run variance and cache effects.
-- Quality comparison will be finalized with screenshot/table snippets.
+- In this test PDF, both produced broadly similar markdown structure in the sampled sections.
+- Conclusion from this run: choose `accurate` when table fidelity is critical; choose `fast` when iterating quickly on large batches.
 
 ## Notes on CPU/GPU
 
@@ -272,16 +281,22 @@ This keeps runs deterministic on my laptop and avoids CUDA/driver mismatch issue
 - `outputs/table-fast/pytorch-conference.md`
 - `outputs/table-accurate/pytorch-conference.md`
 
-## Pending Additions
+## Submission Notes for Issue #122
 
-I will add these next:
-- Screenshots for each command/output
-- Additional format tests:
-  - `--to json`
-  - `--to text` (optional)
-- Optional visualization/debug run:
-  - `--show-layout`
-- Final side-by-side snippets showing table extraction differences
+This README now includes, for each required step:
+- Exact command used (with flags and arguments)
+- Output evidence via terminal screenshots and generated-file screenshots
+- Output artifact paths for markdown/html conversions
+- Comparison and analysis across multiple option changes (`--to html`, `--no-ocr`, `--table-mode fast`, `--table-mode accurate`)
+
+For Forge submission, attach or link:
+- Source PDF: `pdf/pytorch-conference.pdf`
+- Converted outputs:
+  - `outputs/default/pytorch-conference.md`
+  - `outputs/html/pytorch-conference.html`
+  - `outputs/no-ocr/pytorch-conference.md`
+  - `outputs/table-fast/pytorch-conference.md`
+  - `outputs/table-accurate/pytorch-conference.md`
 
 ## Command Summary
 
