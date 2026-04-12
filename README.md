@@ -240,20 +240,26 @@ Screenshots:
 | 5 | Table mode accurate (`--table-mode accurate`) | `outputs/table-accurate/pytorch-conference.md` | 54s | Similar quality in sampled sections; not slower in this run | Use `accurate` when table fidelity matters most; runtime may vary by file/cache |
 
 ### Default Markdown vs HTML
-- Markdown is simpler and easier for text-based downstream processing.
-- HTML preserves presentational structure better for visual review.
-- In this dataset, parse-time dominated conversion; output format itself did not cause a large runtime jump after caching.
+| Aspect | Default Markdown (`--to md`) | HTML (`--to html`) | Conclusion |
+|---|---|---|---|
+| Readability for downstream text use | Simpler/plain structure, easier to parse for RAG-style pipelines | More presentation-oriented structure | Prefer markdown for text-centric preprocessing |
+| Visual/layout review | Limited visual fidelity | Better for visual inspection of structure/content flow | Prefer HTML for manual review |
+| Runtime impact (this dataset) | Baseline | Similar after cache warm-up | Output format itself did not create major runtime differences here |
 
 ### OCR enabled (default) vs `--no-ocr`
-- For this PDF, disabling OCR still produced usable output.
-- Repeated warning `RapidOCR returned empty result!` in OCR-enabled runs suggests OCR often found little/no extra text in image regions for this file.
-- For scanned/image-heavy PDFs, OCR is still expected to be important; for this source PDF, OCR did not materially improve extracted text.
+| Aspect | OCR Enabled (default) | OCR Disabled (`--no-ocr`) | Conclusion |
+|---|---|---|---|
+| Output usability for this PDF | Usable output, but OCR warning appeared | Usable output, warning absent in this run | For this source PDF, OCR did not materially improve extraction |
+| Warning behavior | `RapidOCR returned empty result!` seen repeatedly | Warning not observed in this run | Suggests limited extra OCR-detectable text in this file |
+| Best-fit scenario | Important for scanned/image-heavy docs | Useful for born-digital PDFs with selectable text | Keep OCR for scanned docs; `--no-ocr` can be acceptable for text PDFs |
 
 ### `--table-mode fast` vs `--table-mode accurate`
-- In my run logs, `accurate` was not slower than `fast` (54s vs 65s).
-- This can happen due to run-to-run variance and cache effects.
-- In this test PDF, both produced broadly similar markdown structure in the sampled sections.
-- Conclusion from this run: choose `accurate` when table fidelity is critical; choose `fast` when iterating quickly on large batches.
+| Aspect | `--table-mode fast` | `--table-mode accurate` | Conclusion |
+|---|---|---|---|
+| Runtime in this run | 1m05s | 54s | `accurate` was not slower in this specific run |
+| Reason runtime may differ | Subject to run-to-run variance and cache state | Subject to run-to-run variance and cache state | Compare multiple runs before generalizing performance |
+| Observed output quality (sampled sections) | Broadly similar markdown structure | Broadly similar markdown structure | For this PDF, quality looked similar |
+| Recommendation | Better for quick iteration/batch runs | Better when table fidelity is critical | Pick mode based on project priority: speed vs fidelity |
 
 ## Notes on CPU/GPU
 
@@ -280,23 +286,6 @@ This keeps runs deterministic on my laptop and avoids CUDA/driver mismatch issue
 - `outputs/no-ocr/pytorch-conference.md`
 - `outputs/table-fast/pytorch-conference.md`
 - `outputs/table-accurate/pytorch-conference.md`
-
-## Submission Notes for Issue #122
-
-This README now includes, for each required step:
-- Exact command used (with flags and arguments)
-- Output evidence via terminal screenshots and generated-file screenshots
-- Output artifact paths for markdown/html conversions
-- Comparison and analysis across multiple option changes (`--to html`, `--no-ocr`, `--table-mode fast`, `--table-mode accurate`)
-
-For Forge submission, attach or link:
-- Source PDF: `pdf/pytorch-conference.pdf`
-- Converted outputs:
-  - `outputs/default/pytorch-conference.md`
-  - `outputs/html/pytorch-conference.html`
-  - `outputs/no-ocr/pytorch-conference.md`
-  - `outputs/table-fast/pytorch-conference.md`
-  - `outputs/table-accurate/pytorch-conference.md`
 
 ## Command Summary
 
