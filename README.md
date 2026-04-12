@@ -336,3 +336,11 @@ docling ./pdf/pytorch-conference.pdf --device cpu --table-mode fast --output ./o
 # Table mode accurate
 docling ./pdf/pytorch-conference.pdf --device cpu --table-mode accurate --output ./outputs/table-accurate 2>&1 | tee ./logs/06-table-accurate.txt
 ```
+
+## Conclusion
+
+This Docling exploration successfully covered all required basics for Issue #122: installation, version verification, default conversion, alternate output format, and option-based comparisons.
+
+From these runs, markdown output was the most practical for text-first downstream processing, while HTML was better for visual inspection. For this specific source PDF, disabling OCR still produced usable text and did not significantly degrade results, whereas OCR-enabled runs repeatedly reported empty OCR regions. Table mode `fast` and `accurate` produced similar sampled structure in this dataset, with runtime differences likely influenced by cache and run variance.
+
+Overall, the experiments provided a clear understanding of how Docling CLI options affect output quality, processing behavior, and practical trade-offs relevant to RAG-style preprocessing workflows.
