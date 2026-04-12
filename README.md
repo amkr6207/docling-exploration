@@ -271,21 +271,44 @@ I explicitly used:
 
 This keeps runs deterministic on my laptop and avoids CUDA/driver mismatch issues seen in environment checks.
 
-## Current Output Artifacts
+## Repository Structure
 
-### Logs
-- `logs/03-default.txt`
-- `logs/04-html.txt`
-- `logs/05-no-ocr.txt`
-- `logs/06-table-fast.txt`
-- `logs/06-table-accurate.txt`
-
-### Converted files
-- `outputs/default/pytorch-conference.md`
-- `outputs/html/pytorch-conference.html`
-- `outputs/no-ocr/pytorch-conference.md`
-- `outputs/table-fast/pytorch-conference.md`
-- `outputs/table-accurate/pytorch-conference.md`
+```text
+docling-exploration/
+├── README.md
+├── pdf/
+│   └── pytorch-conference.pdf
+├── logs/
+│   ├── 03-default.txt
+│   ├── 04-html.txt
+│   ├── 05-no-ocr.txt
+│   ├── 06-table-fast.txt
+│   └── 06-table-accurate.txt
+├── outputs/
+│   ├── default/
+│   │   └── pytorch-conference.md
+│   ├── html/
+│   │   └── pytorch-conference.html
+│   ├── no-ocr/
+│   │   └── pytorch-conference.md
+│   ├── table-fast/
+│   │   └── pytorch-conference.md
+│   └── table-accurate/
+│       └── pytorch-conference.md
+└── screenshots/
+    ├── 01-install-docling.png
+    ├── 02-docling-version.png
+    ├── 03-default-terminal.png
+    ├── 04-default-markdown-output.png
+    ├── 05-html-terminal.png
+    ├── 06-html-output.png
+    ├── 07-no-ocr-terminal.png
+    ├── 08-no-ocr-output.png
+    ├── 09-table-fast-terminal.png
+    ├── 10-table-fast-output.png
+    ├── 11-table-accurate-terminal.png
+    └── 12-table-accurate-output.png
+```
 
 ## Command Summary
 
