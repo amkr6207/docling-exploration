@@ -5,7 +5,7 @@
 This repository documents my hands-on exploration for:
 - [Outreachy 2026] Docling: explore document processing basics ([#122](https://forge.fedoraproject.org/commops/interns/issues/122))
 
-Goal: use Docling CLI to convert a PDF to multiple formats, try additional options, and compare outcomes for RAG-style preprocessing.
+**Goal:** use Docling CLI to convert a PDF to multiple formats, try additional options, and compare outcomes for RAG-style preprocessing.
 
 ## Introduction
 
@@ -85,7 +85,10 @@ Reason for selection:
 All commands were run from project root:
 - `/home/aman/OpenSource/outreachy/docling-exploration`
 
-Logs were captured with `tee` into `logs/`.
+Command conventions used in all experiments:
+- `--device cpu`: forces CPU execution for consistent behavior on this machine.
+- `2>&1`: redirects stderr to stdout so warnings/errors are captured.
+- `| tee ./logs/<file>.txt`: prints output to terminal and saves the same output to a log file in `logs/`.
 
 ---
 
@@ -96,6 +99,10 @@ Command:
 ```bash
 docling ./pdf/pytorch-conference.pdf --device cpu --output ./outputs/default 2>&1 | tee ./logs/03-default.txt
 ```
+
+Note:
+- CPU explicitly selected with `--device cpu`.
+- Both stdout and stderr are captured in `logs/03-default.txt` via `2>&1 | tee ...`.
 
 Primary observations from log:
 - RapidOCR used CPU device.
@@ -129,6 +136,10 @@ Command:
 docling ./pdf/pytorch-conference.pdf --device cpu --to html --output ./outputs/html 2>&1 | tee ./logs/04-html.txt
 ```
 
+Note:
+- CPU explicitly selected with `--device cpu`.
+- Both stdout and stderr are captured in `logs/04-html.txt` via `2>&1 | tee ...`.
+
 Primary observations from log:
 - OCR model files were reused (`File exists and is valid`).
 - CPU device used.
@@ -160,6 +171,10 @@ Command:
 docling ./pdf/pytorch-conference.pdf --device cpu --no-ocr --output ./outputs/no-ocr 2>&1 | tee ./logs/05-no-ocr.txt
 ```
 
+Note:
+- CPU explicitly selected with `--device cpu`.
+- Both stdout and stderr are captured in `logs/05-no-ocr.txt` via `2>&1 | tee ...`.
+
 Primary observations from log:
 - Run completed successfully.
 - Log mainly shows model weight loading progress.
@@ -187,6 +202,10 @@ Command:
 ```bash
 docling ./pdf/pytorch-conference.pdf --device cpu --table-mode fast --output ./outputs/table-fast 2>&1 | tee ./logs/06-table-fast.txt
 ```
+
+Note:
+- CPU explicitly selected with `--device cpu`.
+- Both stdout and stderr are captured in `logs/06-table-fast.txt` via `2>&1 | tee ...`.
 
 Primary observations from log:
 - CPU device used.
@@ -218,6 +237,10 @@ Command:
 ```bash
 docling ./pdf/pytorch-conference.pdf --device cpu --table-mode accurate --output ./outputs/table-accurate 2>&1 | tee ./logs/06-table-accurate.txt
 ```
+
+Note:
+- CPU explicitly selected with `--device cpu`.
+- Both stdout and stderr are captured in `logs/06-table-accurate.txt` via `2>&1 | tee ...`.
 
 Primary observations from log:
 - CPU device used.
@@ -271,16 +294,6 @@ Screenshots:
 | Reason runtime may differ | Subject to run-to-run variance and cache state | Subject to run-to-run variance and cache state | Compare multiple runs before generalizing performance |
 | Observed output quality (sampled sections) | Broadly similar markdown structure | Broadly similar markdown structure | For this PDF, quality looked similar |
 | Recommendation | Better for quick iteration/batch runs | Better when table fidelity is critical | Pick mode based on project priority: speed vs fidelity |
-
-## Notes on CPU/GPU
-
-I explicitly used:
-
-```bash
---device cpu
-```
-
-This keeps runs deterministic on my laptop and avoids CUDA/driver mismatch issues seen in environment checks.
 
 ## Repository Structure
 
