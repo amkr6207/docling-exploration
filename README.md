@@ -100,10 +100,6 @@ Command:
 docling ./pdf/pytorch-conference.pdf --device cpu --output ./outputs/default 2>&1 | tee ./logs/03-default.txt
 ```
 
-Note:
-- CPU explicitly selected with `--device cpu`.
-- Both stdout and stderr are captured in `logs/03-default.txt` via `2>&1 | tee ...`.
-
 Primary observations from log:
 - RapidOCR used CPU device.
 - First run downloaded OCR model artifacts.
@@ -136,10 +132,6 @@ Command:
 docling ./pdf/pytorch-conference.pdf --device cpu --to html --output ./outputs/html 2>&1 | tee ./logs/04-html.txt
 ```
 
-Note:
-- CPU explicitly selected with `--device cpu`.
-- Both stdout and stderr are captured in `logs/04-html.txt` via `2>&1 | tee ...`.
-
 Primary observations from log:
 - OCR model files were reused (`File exists and is valid`).
 - CPU device used.
@@ -171,10 +163,6 @@ Command:
 docling ./pdf/pytorch-conference.pdf --device cpu --no-ocr --output ./outputs/no-ocr 2>&1 | tee ./logs/05-no-ocr.txt
 ```
 
-Note:
-- CPU explicitly selected with `--device cpu`.
-- Both stdout and stderr are captured in `logs/05-no-ocr.txt` via `2>&1 | tee ...`.
-
 Primary observations from log:
 - Run completed successfully.
 - Log mainly shows model weight loading progress.
@@ -202,10 +190,6 @@ Command:
 ```bash
 docling ./pdf/pytorch-conference.pdf --device cpu --table-mode fast --output ./outputs/table-fast 2>&1 | tee ./logs/06-table-fast.txt
 ```
-
-Note:
-- CPU explicitly selected with `--device cpu`.
-- Both stdout and stderr are captured in `logs/06-table-fast.txt` via `2>&1 | tee ...`.
 
 Primary observations from log:
 - CPU device used.
@@ -237,10 +221,6 @@ Command:
 ```bash
 docling ./pdf/pytorch-conference.pdf --device cpu --table-mode accurate --output ./outputs/table-accurate 2>&1 | tee ./logs/06-table-accurate.txt
 ```
-
-Note:
-- CPU explicitly selected with `--device cpu`.
-- Both stdout and stderr are captured in `logs/06-table-accurate.txt` via `2>&1 | tee ...`.
 
 Primary observations from log:
 - CPU device used.
