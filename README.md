@@ -3,7 +3,7 @@
 ## Docling: Explore Document Processing Basics
 
 This repository documents my hands-on exploration for:
-- [Outreachy 2026] Docling: explore document processing basics (#122)
+- [Outreachy 2026] Docling: explore document processing basics ([#122](https://forge.fedoraproject.org/commops/interns/issues/122))
 
 Goal: use Docling CLI to convert a PDF to multiple formats, try additional options, and compare outcomes for RAG-style preprocessing.
 
